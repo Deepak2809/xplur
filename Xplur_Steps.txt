@@ -1,0 +1,100 @@
+Please follow below steps:
+---------------------------
+Unzip the folder
+Run the Project(main.py)
+Use Postman Collection 
+
+
+Software Used:
+--------------
+Language: Python 3.7
+Database: MongoDB
+IDE: PyCharm
+DB IDE: NoSqlBooster
+
+Libraries Installed
+--------------------
+pip install Flask-API
+pip install pymongo
+
+APi Methods:
+-------------
+Add Product:
+-------------
+Method: Post
+Url: http://127.0.0.1:5000/product/add
+Params: {
+    "name":"Blue",
+    "description":"test Blue",
+    "category":"Gas",
+    "price":700,
+    "sku":1200
+}
+
+
+Update Product:
+----------------
+Method: Update
+Url: http://127.0.0.1:5000/product/update
+Params: {"id":"612dedcc07445d1e9dad5e47","sku":"50","category":"Furniture"}
+
+Delete Product:
+----------------
+Method: Delete
+Url: http://127.0.0.1:5000/product/delete/<id>
+
+Get Products:
+----------------
+Method: Get
+Url: http://127.0.0.1:5000/product
+
+Get Product By Id:
+----------------
+Method: Get
+Url: hhttp://127.0.0.1:5000/product/<id>
+
+
+Database:
+------------
+
+Database Configuration
+-----------------------
+Follow the below Steps:
+ 1: Open the products.py
+ 2: Update the database configuration
+	client = MongoClient('mongodb://127.0.0.1:27017/')
+ 3. Update the database name
+	database = client.xplurdb
+	
+MongoDB Commands:
+------------------
+use xplurdb
+show dbs
+db.createCollection("products", {})
+db.getCollectionNames()
+db.products.insertOne({ name: "canvas", sku: 100, description: "Test Description", category:"A", price: 200, metadata:{"s_icon":"aaa", "l_icon":"AAA"}})
+db.products.find({})
+
+Code Files:
+-------------
+main.py - It will handle the request and call the Product methods and return the result.
+product.py - It is model class and connected with DB for operation with Database.
+
+Code Sample:
+------------
+For Routing:
+--------------
+@app.route("/product/<id>", methods=['GET'])
+
+To get the data and check the mandatory:
+--------------------------------------------	
+    if 'name' in req_data and req_data['name'] != '':
+        data['name'] = req_data['name']
+    else:
+        return {'success': False, 'result': 'Name Field is missing.'}
+		
+Sample DB communication:
+Insert the values:
+result = database.products.insert_one(data)
+        return result.inserted_id
+		
