@@ -1,2 +1,5 @@
-# xplur
-plur team decided to build an Awsome API known as XPLUR Products API
+Please follow below steps:
+---------------------------
+Unzip the folder
+Run the Project(main.py)
+Use Postman Collection 
